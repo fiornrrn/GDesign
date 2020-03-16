@@ -8,12 +8,12 @@ class BackGround extends React.Component{
 		super(props);
 
 		let bufArr = [];
-		for(let i=0; i<150; i++){
+		for(let i=0; i<200; i++){
 			bufArr.push({
-				size: ((Math.random() * 3) + 1),
+				size: ((Math.random() * 2) + 1),
 				remoteness: Math.floor((Math.random() * 80) + 40),
-				leftIndent: Math.floor(Math.random() * (90 - -20)) + -20,
-				topIndent: Math.floor(Math.random() * (50 - -7)) + -7,
+				leftIndent: Math.floor(Math.random() * (100 - -17)) + -17,
+				topIndent: Math.floor(Math.random() * (90 - -20)) + -10,
 			})
 		}
 

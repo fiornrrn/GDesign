@@ -7,8 +7,8 @@ function Star(props){
 		borderRadius: "50%",
 		height: props.size + "px", 
 		width: props.size + "px",
-		marginLeft: props.leftIndent + "%",
-		marginTop: props.topIndent + "%",
+		marginLeft: props.leftIndent + "vw",
+		marginTop: props.topIndent + "vh",
 	}
 	return(
 		<div style={values}></div>

@@ -12,6 +12,7 @@ class App extends React.Component {
     return (
       <div>
         <BackGround/>
+        {/* <img src="/images/scroll.svg" width="700" height="700" style={{position: "fixed"}}/>*/}
       </div>
     );
   }
