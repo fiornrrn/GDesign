@@ -1,8 +1,5 @@
 import React from 'react';
 
-import './files/styles/App.scss';
-import BackGround from './files/BackGround.js';
-
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -11,8 +8,7 @@ class App extends React.Component {
   render(){
     return (
       <div>
-        <BackGround/>
-        {/* <img src="/images/scroll.svg" width="700" height="700" style={{position: "fixed"}}/>*/}
+        <h1>Hello v-1</h1>
       </div>
     );
   }
