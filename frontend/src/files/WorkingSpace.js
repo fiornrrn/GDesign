@@ -7,7 +7,7 @@ class WorkingSpace extends React.Component {
 	}
 	render(){
 		return(
-			<div>NO</div>
+			<div>{this.props.cupboardHeight + " " + this.props.cupboardWidth}</div>
 		);
 	}
 }

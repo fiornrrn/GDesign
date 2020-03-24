@@ -10,6 +10,7 @@ class Sidebar extends React.Component {
 			<div className='sidebar'>
 				<input type="number" className="number input"/> <i className="text">Длина</i>
 				<input type="number" className="number input"/> <i className="text">Ширина</i>
+				<button className="create-btn">Создать шкаф</button>
 			</div>
 		);
 	}
