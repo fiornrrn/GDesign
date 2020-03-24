@@ -1,4 +1,8 @@
 import React from 'react';
+import './files/styles/App.scss';
+
+import Sidebar from './files/Sidebar.js';
+import WorkingSpace from './files/WorkingSpace.js';
 
 class App extends React.Component {
   constructor(props){
@@ -8,7 +12,8 @@ class App extends React.Component {
   render(){
     return (
       <div>
-        <h1>Hello v-1</h1>
+        <Sidebar/>
+        <WorkingSpace/>
       </div>
     );
   }

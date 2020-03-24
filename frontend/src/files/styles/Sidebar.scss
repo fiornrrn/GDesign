@@ -1,0 +1,29 @@
+$sidebar-width: 213px;
+
+.sidebar{
+	border-right: 2px solid green;
+	width: $sidebar-width;
+	height: 100vh;
+}
+
+.create-btn{
+	
+}
+
+.input{
+	&.number{
+		position: relative;
+		margin-left: 10px;
+		margin-top: 10px;
+
+		width: 100px;
+		height: 20px;
+		border: 1px solid green;
+		border-radius: 3px;
+	}
+}
+.text{
+	margin-left: 15px;
+	font-family: 'Gill Sans', sans-serif;
+	font-style: normal;
+}
