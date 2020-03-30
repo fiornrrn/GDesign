@@ -7,13 +7,28 @@ import WorkingSpace from './files/WorkingSpace.js';
 class App extends React.Component {
   constructor(props){
     super(props);
+
+    this.state = {
+      sidebarValues: {
+        cupboardHeight: 1,
+        cupboardWidth: 1,
+      } 
+    }
+
+    this.onSidebarValuesChange = this.onSidebarValuesChange.bind(this);
+  }
+
+  onSidebarValuesChange(e, paramName){
+    let bufArr = this.state.sidebarValues;
+    bufArr[paramName] = e.target.value;
+    this.setState({sidebarValues: bufArr});
   }
 
   render(){
     return (
       <div>
-        <Sidebar/>
-        <WorkingSpace/>
+        <Sidebar sidebarValues={this.state.sidebarValues} onSidebarValuesChange={this.onSidebarValuesChange}/>
+        <WorkingSpace sidebarValues={this.state.sidebarValues}/>
       </div>
     );
   }
