@@ -10,8 +10,9 @@ class App extends React.Component {
 
     this.state = {
       sidebarValues: {
-        cupboardHeight: 1,
-        cupboardWidth: 1,
+        cupboardHeight: 230,
+        cupboardWidth: 150,
+        doorsQuantity: 2,
       } 
     }
 
