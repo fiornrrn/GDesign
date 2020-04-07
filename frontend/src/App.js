@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import './files/styles/App.scss';
 
 import Sidebar from './files/Sidebar.js';
@@ -14,17 +14,15 @@ class App extends React.Component {
         cupboardWidth: 150,
         doorsQuantity: 2,
       },
-      DnDValues: {
-
+      dndValues: {
+        verticalX: 0,
+        verticalY: 0,
+        horizontalX: 0,
+        horizontalY: 0,
       }
     }
 
     this.onSidebarValuesChange = this.onSidebarValuesChange.bind(this);
-
-    //=============== DnD ================
-    this.onMouseUp = this.onMouseUp.bind(this);
-    this.onMouseMove = this.onMouseMove.bind(this);
-    this.onMouseDown = this.onMouseDown.bind(this);
   }
 
   onSidebarValuesChange(e, paramName){
@@ -33,28 +31,18 @@ class App extends React.Component {
     this.setState({sidebarValues: bufArr});
   }
 
-  //==================== DnD =====================
-  onMouseDown(e){
-    console.log(e);
-    this.setState({isDown: true});
-  }
-  
-  onMouseUp(e){
-    console.log(e);
-    this.setState({isDown: false});
-  }
-  onMouseMove(e){
-    if(this.state.isDown == true){
-      this.setState({X: e.clientX - 90});
-    }
-  }
-
+  // dndValuesChange(paramName, value){
+  //   let bufArr = this.state.dndValues;
+  //   bufArr[paramName] = value;
+  //   console.log(paramName + " = " + value);
+  //   this.setState({dndValues: bufArr});
+  // }
 
   render(){
     return (
       <div>
         <Sidebar sidebarValues={this.state.sidebarValues} onSidebarValuesChange={this.onSidebarValuesChange}
-          DnDValues={this.state.DnDValues} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp} onMouseMove={this.onMouseMove} />
+          onDndValuesChange={this.onDndValuesChange}/>
         <WorkingSpace sidebarValues={this.state.sidebarValues}/>
       </div>
     );
