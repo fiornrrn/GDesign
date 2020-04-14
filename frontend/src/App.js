@@ -14,15 +14,17 @@ class App extends React.Component {
         cupboardWidth: 150,
         doorsQuantity: 2,
       },
-      dndValues: {
-        verticalX: 0,
-        verticalY: 0,
-        horizontalX: 0,
-        horizontalY: 0,
-      }
+      dndValues: [
+        // {
+        //   type: "vertical",
+        //   x: 1,
+        //   y: 49,
+        // }
+      ]
     }
 
     this.onSidebarValuesChange = this.onSidebarValuesChange.bind(this);
+    this.onDndValuesChange = this.onDndValuesChange.bind(this)
   }
 
   onSidebarValuesChange(e, paramName){
@@ -31,19 +33,27 @@ class App extends React.Component {
     this.setState({sidebarValues: bufArr});
   }
 
-  // dndValuesChange(paramName, value){
-  //   let bufArr = this.state.dndValues;
-  //   bufArr[paramName] = value;
-  //   console.log(paramName + " = " + value);
-  //   this.setState({dndValues: bufArr});
-  // }
+  onDndValuesChange(type, x, y){
+    let bufArr = this.state.dndValues;
+    bufArr.push(
+      {
+        type: type,
+        x: x,
+        y: y,
+      }
+    );
+    this.setState({dndValues: bufArr})
+  }
 
   render(){
+    // for(let i = 0; i < this.state.dndValues.length; i++){
+    //   console.log(this.state.dndValues[i].type + " " + this.state.dndValues[i].x + " " + this.state.dndValues[i].y);
+    // }
     return (
       <div>
         <Sidebar sidebarValues={this.state.sidebarValues} onSidebarValuesChange={this.onSidebarValuesChange}
           onDndValuesChange={this.onDndValuesChange}/>
-        <WorkingSpace sidebarValues={this.state.sidebarValues}/>
+        <WorkingSpace sidebarValues={this.state.sidebarValues} dndValues={this.state.dndValues}/>
       </div>
     );
   }
