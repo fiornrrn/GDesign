@@ -1,0 +1,57 @@
+$sidebar-width: 240px;
+
+.sidebar{
+	background-color: #62c483;
+	width: $sidebar-width;
+	height: 100vh;
+	box-shadow: 0 0 20px #9d9e9d;
+	margin: 0px 0px;
+}
+
+.input {
+	position: relative;
+ 	font-family: 'Roboto', sans-serif;
+ 	color: #333;
+	font-size: 1.2rem;
+	margin: 10px 18px;
+	border-radius: 0.2rem;
+	background-color: rgb(255, 255, 255);
+	text-align: center;
+	border: none;
+	width: 200px;
+	height: 30px;
+	border-bottom: 0.3rem solid transparent;
+	transition: 0.2s;
+
+	&:hover{
+  		border-radius: 10px;
+  	}
+}
+
+.create-btn{
+	position: relative;
+	margin-top: 15px;
+	margin-left: 37px;
+
+	display: inline-block;
+ 	outline: none;
+  	color: #424745;
+  	text-decoration: none;
+  	user-select: none;
+  	border: 0px;
+  	border-radius: 7px;
+  	background-color: rgb(255, 255, 255);
+
+  	transition: 0.2s;
+  	width: 160px;
+  	height: 35px;
+  	font: 16px arial, sans-serif;
+
+ 	&:hover{
+  		border-radius: 10px;
+   		background-color: #c2f2e0;
+  	}
+  	&:active{
+    	background-color: #81f0a6;
+  	}
+}
