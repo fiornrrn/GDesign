@@ -2,6 +2,7 @@ import React from 'react';
 import './styles/WorkingSpace.scss';
 
 const par = 4;
+
 const oneSM = 10 / par;
 const profilLeftRightWidth = 35 / par;
 const profilTopHeight = 20 / par;
@@ -11,13 +12,9 @@ const WorkingSpace = (props) => {
 	let hfScrW = ((window.innerWidth) / 2) - ((props.sidebarValues.doorWidth * oneSM) / 2) - 240 / 2;
 	let hfScrH = (window.innerHeight / 2) - ((props.sidebarValues.doorHeight * oneSM) / 2) - 20;
 
-	//profil
-	let leftProfilImgArr = [];
-	let rightProfilImgArr = [];
-	let topProfilImgArr = [];
-	let bottomProfilImgArr = [];
+	//============================================ main profil creation =====================================================
+	let leftProfilImgArr = [], rightProfilImgArr = [], topProfilImgArr = [], bottomProfilImgArr = [];
 	for(let i = 0; i < props.sidebarValues.doorHeight; i++){
-		console.log(hfScrH + " " +  hfScrW);
 		//left
 		leftProfilImgArr.push(<img src='/images/profil/light_left.png' width={profilLeftRightWidth} height={oneSM}
 			style={{position: "fixed", marginTop: hfScrH + oneSM * i, marginLeft: hfScrW}}/>);
@@ -33,7 +30,8 @@ const WorkingSpace = (props) => {
 		bottomProfilImgArr.push(<img src="/images/profil/light_bottom.jpg" width={oneSM} height={profilBottomHeight} 
 			style={{position: "fixed", marginTop: hfScrH + props.sidebarValues.doorHeight * oneSM - profilBottomHeight, marginLeft: hfScrW + oneSM * i}}/>);
 	}
-
+	//=======================================================================================================================
+	
 	return(
 		<div className="main-space">
 			{topProfilImgArr}
