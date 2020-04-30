@@ -1,34 +1,27 @@
 import React from 'react';
 import './styles/WorkingSpace.scss';
 
-const par = 4;
-
-const oneSM = 10 / par;
-const profilLeftRightWidth = 35 / par;
-const profilTopHeight = 20 / par;
-const profilBottomHeight = 55 / par;
-
 const WorkingSpace = (props) => {
-	let hfScrW = ((window.innerWidth) / 2) - ((props.sidebarValues.doorWidth * oneSM) / 2) - 240 / 2;
-	let hfScrH = (window.innerHeight / 2) - ((props.sidebarValues.doorHeight * oneSM) / 2) - 20;
+	let hfScrW = ((window.innerWidth) / 2) - ((props.sidebarValues.doorWidth * props.constants.oneSM) / 2) - 240 / 2;
+	let hfScrH = (window.innerHeight / 2) - ((props.sidebarValues.doorHeight * props.constants.oneSM) / 2) - 20;
 
 	//============================================ main profil creation =====================================================
 	let leftProfilImgArr = [], rightProfilImgArr = [], topProfilImgArr = [], bottomProfilImgArr = [];
 	for(let i = 0; i < props.sidebarValues.doorHeight; i++){
 		//left
-		leftProfilImgArr.push(<img src='/images/profil/light_left.png' width={profilLeftRightWidth} height={oneSM}
-			style={{position: "fixed", marginTop: hfScrH + oneSM * i, marginLeft: hfScrW}}/>);
+		leftProfilImgArr.push(<img src='/images/profil/light_left.png' width={props.constants.profilLeftRightWidth} height={props.constants.oneSM}
+			style={{position: "fixed", marginTop: hfScrH + props.constants.oneSM * i, marginLeft: hfScrW}}/>);
 		//right
-		rightProfilImgArr.push(<img src="/images/profil/light_right.png" width={profilLeftRightWidth} height={oneSM}
-			style={{position: "fixed", marginTop: hfScrH + oneSM * i, marginLeft: hfScrW + oneSM * props.sidebarValues.doorWidth}}/>);
+		rightProfilImgArr.push(<img src="/images/profil/light_right.png" width={props.constants.profilLeftRightWidth} height={props.constants.oneSM}
+			style={{position: "fixed", marginTop: hfScrH + props.constants.oneSM * i, marginLeft: hfScrW + props.constants.oneSM * props.sidebarValues.doorWidth}}/>);
 	}
 	for(let i = 0; i < props.sidebarValues.doorWidth; i++){
 		//top
-		topProfilImgArr.push(<img src="/images/profil/light_top.jpg" width={oneSM} height={profilTopHeight} 
-			style={{position: "fixed", marginTop: hfScrH, marginLeft: hfScrW + oneSM * i}}/>);
+		topProfilImgArr.push(<img src="/images/profil/light_top.jpg" width={props.constants.oneSM} height={props.constants.profilTopHeight} 
+			style={{position: "fixed", marginTop: hfScrH, marginLeft: hfScrW + props.constants.oneSM * i}}/>);
 		//bottom
-		bottomProfilImgArr.push(<img src="/images/profil/light_bottom.jpg" width={oneSM} height={profilBottomHeight} 
-			style={{position: "fixed", marginTop: hfScrH + props.sidebarValues.doorHeight * oneSM - profilBottomHeight, marginLeft: hfScrW + oneSM * i}}/>);
+		bottomProfilImgArr.push(<img src="/images/profil/light_bottom.jpg" width={props.constants.oneSM} height={props.constants.profilBottomHeight} 
+			style={{position: "fixed", marginTop: hfScrH + props.sidebarValues.doorHeight * props.constants.oneSM - props.constants.profilBottomHeight, marginLeft: hfScrW + props.constants.oneSM * i}}/>);
 	}
 	//=======================================================================================================================
 	
@@ -38,6 +31,7 @@ const WorkingSpace = (props) => {
 			{bottomProfilImgArr}
 			{leftProfilImgArr}
 			{rightProfilImgArr}
+			{props.dndValues}
 		</div>
 	);
 }

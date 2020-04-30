@@ -5,6 +5,15 @@ import Sidebar from './files/Sidebar.js';
 import WorkingSpace from './files/WorkingSpace.js';
 import Divide from './files/Divide.js';
 
+const par = 4;
+
+const constants = {
+  oneSM: 10 / par,
+  profilLeftRightWidth: 35 / par, 
+  profilTopHeight: 20 / par, 
+  profilBottomHeight: 55 / par,
+} 
+
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -20,20 +29,14 @@ class App extends React.Component {
     }
   }
 
-  onCreateBtnClick(e, values){
-    this.setState({sidebarValues: values, dndValues: []});
-  }
-  onDndValuesChange(type, x, y){
-    let bufArr = this.state.dndValues;
-    bufArr.push(<Divide x={x} y={y} type={type} sidebarValues={this.state.sidebarValues} dndValues={this.state.dndValues}/>);
-    this.setState({dndValues: bufArr});
-  }
+  onCreateBtnClick(e, values){ this.setState({sidebarValues: values, dndValues: []}); }
+  onDndValuesChange(type, x, y){ this.setState({dndValues: this.state.dndValues.concat([<Divide type={type} x={x} y={y}/>])}); }
 
   render(){
     return (
       <div>
         <Sidebar onCreateBtnClick={this.onCreateBtnClick} onDndValuesChange={this.onDndValuesChange}/>
-        <WorkingSpace sidebarValues={this.state.sidebarValues} dndValues={this.state.dndValues}/>
+        <WorkingSpace sidebarValues={this.state.sidebarValues} dndValues={this.state.dndValues} constants={constants}/>
       </div>
     );
   }

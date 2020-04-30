@@ -5,16 +5,17 @@ const Divide = (props) => {
 	let imgArr = [];
 	let endX, endY;
 
-	for(let i = 0; i < props.dndValues; i++)
-	{
-		if(params.type != props.dndValues[i].type){
-			
-		}
-	}
+	// if(props.type == 'vertical'){
+	// 	for(let i = 0; i < props.)
+	// }
+	// else if(props.type == 'horizontal'){
+		
+	// }
+	console.log("hentaistar");
 
 	return(
 		<div>
-			
+			{imgArr}
 		</div>
 	);
 }
