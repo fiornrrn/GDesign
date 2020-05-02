@@ -7,14 +7,13 @@ import Divide from './files/Divide.js';
 
 
 const par = 4;
+
 const constants = {
   oneSM: 10 / par,
-  profilLeftRightWidth: 35 / par,
-  profilTopHeight: 20 / par,
+  profilLeftRightWidth: 35 / par, 
+  profilTopHeight: 20 / par, 
   profilBottomHeight: 55 / par,
-
-  sidebarWidth: 210,
-}
+} 
 
 class App extends React.Component {
   constructor(props){

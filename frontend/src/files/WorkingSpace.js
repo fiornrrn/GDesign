@@ -32,6 +32,7 @@ const WorkingSpace = (props) => {
 			{bottomProfilImgArr}
 			{leftProfilImgArr}
 			{rightProfilImgArr}
+			{props.dndValues}
 		</div>
 	);
 }
