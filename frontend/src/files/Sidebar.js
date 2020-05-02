@@ -30,7 +30,7 @@ const Sidebar = (props) => {
 		}
 
 		dndHorizontalRef.current.onmouseup = function() {
-			props.onDndValuesChange('horizontal',dndHorizontalRef.current.style.left, dndHorizontalRef.current.style.top);
+			props.onDndValuesAdd('horizontal',dndHorizontalRef.current.style.left, dndHorizontalRef.current.style.top);
 			
 			dndHorizontalRef.current.style.left = horizontalLeftMargin - dndHorizontalRef.current.offsetWidth / 2 + 'px';
 			dndHorizontalRef.current.style.top = horizontalTopMargin - dndHorizontalRef.current.offsetHeight / 2 + 'px';
@@ -58,7 +58,7 @@ const Sidebar = (props) => {
 		}
 
 		dndVerticalRef.current.onmouseup = function() {
-			props.onDndValuesChange('vertical',dndVerticalRef.current.style.left, dndVerticalRef.current.style.top);
+			props.onDndValuesAdd('vertical',dndVerticalRef.current.style.left, dndVerticalRef.current.style.top);
 
 			dndVerticalRef.current.style.left = verticalLeftMargin - dndVerticalRef.current.offsetWidth / 2 + 'px';
 			dndVerticalRef.current.style.top = verticalTopMargin - dndVerticalRef.current.offsetHeight / 2 + 'px';
