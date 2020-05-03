@@ -13,6 +13,8 @@ const constants = {
   profilLeftRightWidth: 35 / par, 
   profilTopHeight: 20 / par, 
   profilBottomHeight: 55 / par,
+
+  sidebarWidth: 210,
 } 
 
 class App extends React.Component {
