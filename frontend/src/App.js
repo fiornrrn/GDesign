@@ -1,10 +1,8 @@
 import React, {useRef, useEffect, useState} from 'react';
-import './files/styles/App.scss';
 
 import Sidebar from './files/Sidebar.js';
 import WorkingSpace from './files/WorkingSpace.js';
 import Divide from './files/Divide.js';
-
 
 const par = 4;
 
@@ -22,7 +20,6 @@ class App extends React.Component {
     super(props);
     this.onCreateBtnClick = this.onCreateBtnClick.bind(this);
     this.onDndValuesAdd = this.onDndValuesAdd.bind(this);
-    this.onDndValuesChange = this.onDndValuesChange.bind(this);
 
     this.state = {
       sidebarValues: {
@@ -33,6 +30,7 @@ class App extends React.Component {
     }
   }
 
+  //========== functions ============
   onCreateBtnClick(e, values){ this.setState({sidebarValues: values, dndValues: []}); }
   onDndValuesAdd(type, x, y){ 
     let hfScrW = ((window.innerWidth) / 2) - ((this.state.sidebarValues.doorWidth * constants.oneSM) / 2) - 240 / 2;
@@ -77,8 +75,8 @@ class App extends React.Component {
     console.log("type: " + type + ' x: ' + x + ' y: ' + y + ' min: ' + min + ' max: ' + max);
     this.setState({dndValues: this.state.dndValues.concat([{type: type, x: x , y: y, min: min, max: max}])}); 
   }
-  onDndValuesChange(paramName, num, value){let bufArr = this.state.dndValues[num]; bufArr[paramName] = value; this.setState({dndValues: bufArr});}
 
+  //========== render ===========
   render(){
     let hfValues = {
       hfScrW: ((window.innerWidth) / 2) - ((this.state.sidebarValues.doorWidth * constants.oneSM) / 2) - 240 / 2,
@@ -88,7 +86,7 @@ class App extends React.Component {
 
     for(let i = 0; i < this.state.dndValues.length; i++){
       dndDivides.push(<Divide min={this.state.dndValues[i].min} max={this.state.dndValues[i].max} num={i}
-        onDndValuesChange={this.onDndValuesChange} sidebarValues={this.state.sidebarValues} dndValues={this.state.dndValues} constants={constants}/>)
+        sidebarValues={this.state.sidebarValues} dndValues={this.state.dndValues} hfValues={hfValues} constants={constants}/>)
     }
     return (
       <div>

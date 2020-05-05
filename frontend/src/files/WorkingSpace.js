@@ -21,7 +21,7 @@ const WorkingSpace = (props) => {
 		bottomProfilImgArr.push(<img src="/images/profil/light_bottom.jpg" width={props.constants.oneSM} height={props.constants.profilBottomHeight} 
 			style={{position: "fixed", marginTop: props.hfValues.hfScrH + props.sidebarValues.doorHeight * props.constants.oneSM - props.constants.profilBottomHeight, marginLeft: props.hfValues.hfScrW + props.constants.oneSM * i}}/>);
 	}
-	//=======================================================================================================================
+	//============================================= render ==================================================
 	
 	return(
 		<div className="main-space">

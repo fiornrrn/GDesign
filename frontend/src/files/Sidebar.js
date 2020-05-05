@@ -13,10 +13,13 @@ const verticalLeftMargin = 65;
 
 
 const Sidebar = (props) => {
-
+	//=========== Refs ============
 	const dndHorizontalRef = useRef(null);
 	const dndVerticalRef = useRef(null);
 
+	const dndTextureFirstRef = useRef(null);
+
+	//=========== onDivideMove =============
 	const handleDownHorizontal = (e) => {
 		document.body.appendChild(dndHorizontalRef.current);
 		dndHorizontalRef.current.style.zIndex = 1000;
@@ -71,6 +74,7 @@ const Sidebar = (props) => {
 			return false;
 		};
 	}
+
 	//=========== Effect ============
 	useEffect(() => {
 		dndHorizontalRef.current.style.left = horizontalLeftMargin - dndHorizontalRef.current.offsetWidth / 2 + 'px';
