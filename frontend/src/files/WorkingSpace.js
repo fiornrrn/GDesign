@@ -25,12 +25,12 @@ const WorkingSpace = (props) => {
 	
 	return(
 		<div className="main-space">
+			{props.textureImg}
 			{props.dndDivides}
 			{topProfilImgArr}
 			{bottomProfilImgArr}
 			{leftProfilImgArr}
 			{rightProfilImgArr}
-			{props.dndValues}
 		</div>
 	);
 }

@@ -3,6 +3,7 @@ import React, {useRef, useEffect, useState} from 'react';
 import Sidebar from './files/Sidebar.js';
 import WorkingSpace from './files/WorkingSpace.js';
 import Divide from './files/Divide.js';
+import MaxMinCalculate from './files/JSFunctions.js';
 
 const par = 4;
 
@@ -20,6 +21,7 @@ class App extends React.Component {
     super(props);
     this.onCreateBtnClick = this.onCreateBtnClick.bind(this);
     this.onDndValuesAdd = this.onDndValuesAdd.bind(this);
+    this.onTextureValuesAdd = this.onTextureValuesAdd.bind(this);
 
     this.state = {
       sidebarValues: {
@@ -27,53 +29,22 @@ class App extends React.Component {
         doorWidth: 100,
       },
       dndValues: [],
+      textureValues: [],
     }
   }
 
   //========== functions ============
   onCreateBtnClick(e, values){ this.setState({sidebarValues: values, dndValues: []}); }
   onDndValuesAdd(type, x, y){ 
-    let hfScrW = ((window.innerWidth) / 2) - ((this.state.sidebarValues.doorWidth * constants.oneSM) / 2) - 240 / 2;
-    let hfScrH = (window.innerHeight / 2) - ((this.state.sidebarValues.doorHeight * constants.oneSM) / 2) - 20;
+    let values = MaxMinCalculate(type, x, y, this.state.dndValues, this.state.sidebarValues, constants);
+    this.setState({dndValues: this.state.dndValues.concat([{type: type, x: x , y: y, min: values.min, max: values.max}])}); 
+  }
+  onTextureValuesAdd(src, x, y){
+    let valuesY = MaxMinCalculate('vertical', x, y, this.state.dndValues, this.state.sidebarValues, constants)
+    let valuesX = MaxMinCalculate('horizontal', x, y, this.state.dndValues, this.state.sidebarValues, constants)
 
-    let max = 0, min = 0;
-
-    if(type=='vertical'){
-      max = hfScrH + constants.oneSM * this.state.sidebarValues.doorHeight; min = hfScrH;
-
-      for(let i = 0; i < this.state.dndValues.length; i++){
-        if(this.state.dndValues[i].type != 'vertical'){
-          let iy = parseFloat(this.state.dndValues[i].y, 10), numy = parseFloat(y, 10);
-          if(this.state.dndValues[i].max > parseFloat(x, 10) - constants.sidebarWidth && this.state.dndValues[i].min < parseFloat(x, 10) - constants.sidebarWidth){
-            if(iy > min && iy < numy){
-              min = iy;
-            }
-            if(iy < max && iy > numy){
-              max = iy;
-            }
-          }
-        }	
-      }
-    }
-    else if(type == 'horizontal'){
-      max = hfScrW + constants.oneSM * this.state.sidebarValues.doorWidth; min = hfScrW;
-  
-      for(let i = 0; i < this.state.dndValues.length; i++){
-        if(this.state.dndValues[i].type != 'horizontal'){
-          let ix = (parseFloat(this.state.dndValues[i].x, 10)-constants.sidebarWidth), numx = (parseFloat(x, 10)-constants.sidebarWidth);
-          if(this.state.dndValues[i].max > parseFloat(y, 10) && this.state.dndValues[i].min < parseFloat(y, 10)){
-            if(ix > min && ix < numx){
-              min = ix;
-            }
-            if(ix < max && ix > numx){
-              max = ix;
-            }
-          }
-        }	 
-      }
-    }
-    console.log("type: " + type + ' x: ' + x + ' y: ' + y + ' min: ' + min + ' max: ' + max);
-    this.setState({dndValues: this.state.dndValues.concat([{type: type, x: x , y: y, min: min, max: max}])}); 
+    this.setState({textureValues: this.state.textureValues.concat([{src: src ,x: valuesX.min, y: valuesY.min, 
+      width: valuesX.max - valuesX.min, height: valuesY.max - valuesY.min}])});
   }
 
   //========== render ===========
@@ -83,15 +54,22 @@ class App extends React.Component {
       hfScrH: (window.innerHeight / 2) - ((this.state.sidebarValues.doorHeight * constants.oneSM) / 2) - 20,
     }
     let dndDivides = [];
-
     for(let i = 0; i < this.state.dndValues.length; i++){
       dndDivides.push(<Divide min={this.state.dndValues[i].min} max={this.state.dndValues[i].max} num={i}
         sidebarValues={this.state.sidebarValues} dndValues={this.state.dndValues} hfValues={hfValues} constants={constants}/>)
     }
+
+    let textureImg = [];
+    for(let i = 0; i < this.state.textureValues.length; i++){
+      textureImg.push(<div style={{marginLeft: this.state.textureValues[i].x, marginTop: this.state.textureValues[i].y, 
+        width: this.state.textureValues[i].width, height: this.state.textureValues[i].height, position: "fixed"}}>
+          <img style={{width: "100%", height: "100%", objectFit: "none", objectPosition: "0 0"}} src="/images/textures/beton.jpg"/></div>)
+    }
     return (
       <div>
-        <Sidebar onCreateBtnClick={this.onCreateBtnClick} onDndValuesAdd={this.onDndValuesAdd} constants={constants}/>
-        <WorkingSpace sidebarValues={this.state.sidebarValues} dndDivides={dndDivides} constants={constants} hfValues={hfValues}/>
+        {/* <div style={{width: 100, height: 100}}><img style={{width: "100%", height: "100%", objectFit: "cover", objectPosition: "0 0"}} src="/images/textures/beton.jpg"/></div> */}
+        <Sidebar onCreateBtnClick={this.onCreateBtnClick} onDndValuesAdd={this.onDndValuesAdd} onTextureValuesAdd={this.onTextureValuesAdd} constants={constants}/>
+        <WorkingSpace sidebarValues={this.state.sidebarValues} dndDivides={dndDivides} textureImg={textureImg} constants={constants} hfValues={hfValues}/>
       </div>
     );
   }

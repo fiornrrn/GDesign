@@ -3,8 +3,8 @@ import './styles/Sidebar.scss';
 
 const divisionHeight = 90;
 const divisionWidth = 15;
-const divisionMarginLeft = -85;
-const divisionMarginTop = 80;
+
+const squareSide = 60;
 
 const horizontalTopMargin = 250;
 const horizontalLeftMargin = 140;
@@ -17,9 +17,10 @@ const Sidebar = (props) => {
 	const dndHorizontalRef = useRef(null);
 	const dndVerticalRef = useRef(null);
 
-	const dndTextureFirstRef = useRef(null);
+	const dndFirstTextureRef = useRef(null);
 
-	//=========== onDivideMove =============
+	//=========== onMove =============
+	//----------- Divide -------------
 	const handleDownHorizontal = (e) => {
 		document.body.appendChild(dndHorizontalRef.current);
 		dndHorizontalRef.current.style.zIndex = 1000;
@@ -75,6 +76,34 @@ const Sidebar = (props) => {
 		};
 	}
 
+	//----------- Textures ------------
+	const handleDownFirstTexture = (e) => {
+		document.body.appendChild(dndFirstTextureRef.current);
+		dndFirstTextureRef.current.style.zIndex = 1000;
+		function moveAt(e) {
+			dndFirstTextureRef.current.style.left = e.clientX - dndFirstTextureRef.current.offsetWidth / 2 + 'px';
+			dndFirstTextureRef.current.style.top = e.clientY - dndFirstTextureRef.current.offsetHeight / 2 + 'px'; 
+		} 
+
+		document.onmousemove = function(e) {
+			moveAt(e, 'horizontal', dndFirstTextureRef);
+		}
+
+		dndFirstTextureRef.current.onmouseup = function() {
+			props.onTextureValuesAdd('/images/textures/beton.jpg',dndFirstTextureRef.current.style.left, dndFirstTextureRef.current.style.top);
+			
+			dndFirstTextureRef.current.style.left = horizontalLeftMargin - dndFirstTextureRef.current.offsetWidth / 2 + 'px';
+			dndFirstTextureRef.current.style.top = ((horizontalTopMargin - dndFirstTextureRef.current.offsetHeight / 2) + 100) + 'px';
+
+			document.onmousemove = null;
+			dndFirstTextureRef.current.onmouseup = null;
+		}
+
+		dndFirstTextureRef.current.ondragstart = function() {
+			return false;
+		};
+	}
+
 	//=========== Effect ============
 	useEffect(() => {
 		dndHorizontalRef.current.style.left = horizontalLeftMargin - dndHorizontalRef.current.offsetWidth / 2 + 'px';
@@ -82,6 +111,9 @@ const Sidebar = (props) => {
 
 		dndVerticalRef.current.style.left = verticalLeftMargin - dndVerticalRef.current.offsetWidth / 2 + 'px';
 		dndVerticalRef.current.style.top = verticalTopMargin - dndVerticalRef.current.offsetHeight / 2 + 'px';
+
+		dndFirstTextureRef.current.style.left = horizontalLeftMargin - dndFirstTextureRef.current.offsetWidth / 2 + 'px';
+		dndFirstTextureRef.current.style.top = ((horizontalTopMargin - dndFirstTextureRef.current.offsetHeight / 2) + 100) + 'px';
 	});
 
 	//=========== Sidebar values ==============
@@ -107,7 +139,11 @@ const Sidebar = (props) => {
 			<img src="/images/profil/light_horizontal.png" width={divisionHeight} height={divisionWidth} 
 				style={{position:"fixed"}}
 				onMouseDown={handleDownHorizontal} ref={dndHorizontalRef}/>
+
+			<img src="/images/textures/beton.jpg" width={squareSide} height={squareSide} 
+				style={{position:"fixed"}}
+				onMouseDown={handleDownFirstTexture} ref={dndFirstTextureRef}/>
 		</div>
 	);
 }
-export default Sidebar;	
+export default Sidebar;
