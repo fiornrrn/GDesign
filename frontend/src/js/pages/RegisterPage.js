@@ -6,7 +6,7 @@ import TextInput from '@js/components/TextInput.js';
 const RegisterPage = (props) => {
    return(
       <div>
-         <img src={"/assets/img/globalx_logo.svg"} className="globalx-logo"/>
+         <img src={"./assets/img/globalx_logo.svg"} className="globalx-logo"/>
          <h1>Регистрация</h1>
          <div className="block" >
             <TextInput styleArr={{marginLeft: "20px", marginTop: "20px", text: "Почта", width: 440}}/>
