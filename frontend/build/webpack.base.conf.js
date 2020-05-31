@@ -1,13 +1,23 @@
 const path = require("path");
+const fs = require('fs');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const PAGES_DIR = path.join(__dirname, '../src/htmlPages');
+const PAGES = fs
+  .readdirSync(PAGES_DIR)
+  .filter(fileName => fileName.endsWith(".html"));
+
 module.exports = {
-  entry: "./src/index.js",
+  entry: {
+    registerPage: "./src/js/entryPoints/registerPage.js",
+    loginPage: "./src/js/entryPoints/loginPage.js",
+    appPage: "./src/js/entryPoints/appPage.js"
+  },
   output: {
     path: path.join(__dirname, "../dist"),
-    filename: "index-bundle.js"
+    filename: "js/[name].[contenthash].js"
   },
   module: {
     rules: [
@@ -68,15 +78,19 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: `./assets/css/[name].css`
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/index.html"
+      filename: `./assets/css/[name].[contenthash].css`
     }),
     new CopyWebpackPlugin({
       patterns: [
         { from: `./src/assets/img`, to: `./assets/img` },
       ]
     }),
+    ...PAGES.map(
+      page =>
+        new HtmlWebpackPlugin({
+          template: `${PAGES_DIR}/${page}`,
+          filename: `./${page}`
+        })
+    )
   ]
 };
