@@ -8,6 +8,17 @@
    margin-top: 30px;
 }
 
+.GX {
+   position: fixed;
+   width: 340px;
+   height: 340px;
+   margin-top: 60px;
+   margin-left: 475px;
+   @media (max-width: 850px) {
+      visibility: hidden;
+   }
+}
+
 .block {
    position: fixed;
    margin-left: calc(50vw - 800px / 2);
@@ -16,7 +27,12 @@
    height: 500px;
    width: 800px;
    border-radius: 10px;
-   border: 1.5px solid #b5b5b5;
+   border: 0.5px solid #b5b5b5;
+
+   @media (max-width: 850px) {
+      width: 500px; 
+      margin-left: calc(50vw - 500px / 2);
+   }
 }
 
 .text_input {
