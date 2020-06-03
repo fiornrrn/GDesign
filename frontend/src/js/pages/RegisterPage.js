@@ -21,7 +21,7 @@ const RegisterPage = (props) => {
     if(emailRef.current.value === "") { bufErrorArr.push("Не заполненно поле почты"); }
     if(passwordRef.current.value === "" || passwordRepeatRef.current.value === "") { bufErrorArr.push("Не заполненно поле пароля"); }
     else if(passwordRef.current.value !== passwordRepeatRef.current.value) { bufErrorArr.push("Пароли не соответсвуют") }
-    if(bufErrorArr.length === 0) { window.location.href = "http://localhost:8080/validation"} //page link
+    if(bufErrorArr.length === 0) { window.location.href = "http://localhost:8080/validation" } //page link
     setErrorArrState(bufErrorArr);
   }
 
@@ -29,14 +29,14 @@ const RegisterPage = (props) => {
     <div> 
       <img src={"./assets/img/globalx_logo.svg"} className="globalx-logo"/>
       <h1>Регистрация</h1>
-      <div className="block" >
-         <TextInput type="text" inputRef={emailRef} styleArr={{marginLeft: "30px", marginTop: "30px", text: "Почта", width: 440}}/>
-         <TextInput type={ eyeImgState?'password':'text' } inputRef={passwordRef} styleArr={{marginLeft: "30px", marginTop: "110px", text: "Пароль", width: 170}}/>
-         <TextInput type={ eyeImgState?'password':'text' } inputRef={passwordRepeatRef} styleArr={{marginLeft: "240px", marginTop: "110px", text: "Повторите пароль", width: 170}}/>
+      <div className="register-block" >
+         <TextInput type="text" inputRef={emailRef}  text={"Почта"} styleArr={{marginLeft: "30px", marginTop: "30px", width: 440}}/>
+         <TextInput type={ eyeImgState?'password':'text' } inputRef={passwordRef} text={"Пароль"} styleArr={{marginLeft: "30px", marginTop: "110px", width: 170}}/>
+         <TextInput type={ eyeImgState?'password':'text' } inputRef={passwordRepeatRef} text={"Повторите пароль"} styleArr={{marginLeft: "240px", marginTop: "110px", width: 170}}/>
          <ImgButtonInput onClick={onEyeButtonClick} styleArr={{marginLeft: "435px", marginTop: '110px', width: '60px', height: "60px", imgSrc: eyeImgState?'./assets/img/close_eye.svg':"./assets/img/open_eye.svg"}}/>
          <img src={"./assets/img/GX.svg"} className="GX"/>
 
-         <ButtonInput onClick={onContinueButtonClick} styleArr={{marginLeft: "30px", marginTop: "340px", text: "Продолжить", width: 300}}/>
+         <ButtonInput onClick={onContinueButtonClick} text={"Продолжить"} styleArr={{marginLeft: "30px", marginTop: "340px", width: 300}}/>
          <ErrorsList errorsArr={errorArrState} styleArr={{marginTop: "180px", position: 'fixed'}}></ErrorsList>
       </div>
    </div>

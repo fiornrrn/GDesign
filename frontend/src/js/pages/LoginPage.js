@@ -4,6 +4,7 @@ import ButtonInput from '@js/components/ButtonInput.js';
 const LoginPage = (props) => {
   return(
     <div> 
+      lohin
    </div>
   );
 }

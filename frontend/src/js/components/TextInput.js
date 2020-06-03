@@ -7,7 +7,7 @@ const TextInput = (props) => {
      <div>
         <label className="text_input" style={{marginLeft: props.styleArr.marginLeft, marginTop: props.styleArr.marginTop}}>
            <input type={props.type} ref={props.inputRef} placeholder="&nbsp;" style={{width: props.styleArr.width}}/>
-           <span className="label">{props.styleArr.text}</span>
+           <span className="label">{props.text}</span>
         </label>
      </div>
   );

@@ -4,7 +4,7 @@ import '@stl/components.scss';
 const ButtonInput = (props) => {
   return (
     <div>
-      <button className='button_input' onClick={props.onClick} style={{marginLeft: props.styleArr.marginLeft, marginTop: props.styleArr.marginTop, width: props.styleArr.width}}>{props.styleArr.text}</button>
+      <button className='button_input' onClick={props.onClick} style={props.styleArr}>{props.text}</button>
     </div>
   );
 }
