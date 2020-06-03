@@ -5,11 +5,13 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import RegisterPage from '@js/pages/RegisterPage';
 import LoginPage from '@js/pages/LoginPage';
 import AppPage from '@js/pages/AppPage';
+import ValidationPage from '@js/pages/ValidationPage';
 
 ReactDOM.render(
    <Router>
       <div>
         <Route exact path='/register' component={RegisterPage} />
+        <Route path='/validation' component={ValidationPage} />
         <Route path='/login' component={LoginPage} />
         <Route path='/' component={AppPage} />
       </div>

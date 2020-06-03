@@ -16,7 +16,8 @@ const buildWebpackConfig = merge(baseWebpackConfig, {
   entry: {
     registerPage: "./src/main/entryPoints/register.js",
     loginPage: "./src/main/entryPoints/login.js",
-    appPage: "./src/main/entryPoints/app.js"
+    appPage: "./src/main/entryPoints/app.js",
+    validationPage: "./src/main/entryPoints/validation.js"
   },
   output: {
     path: path.join(__dirname, "../dist"),
